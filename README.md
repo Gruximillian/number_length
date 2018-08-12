@@ -37,7 +37,7 @@ console.log(number2String.length); // 15 -> nice, still works
 
 const number3 = 1234567890000000000;
 const number3String = number3.toString();
-console.log(number3String.length); // 19 -> nice, still works event we have passed the Number.MAX_SAFE_INTEGER value
+console.log(number3String.length); // 19 -> nice, still works even though we have passed the Number.MAX_SAFE_INTEGER value
 ```
 
 This is lookig really good so far. Let's give it some really large number, just for fun.
