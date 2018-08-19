@@ -54,7 +54,7 @@ Time to debug.
 
 ## The cause of the issue
 
-For some reason `.length` property of the `number4String` variable returns 14 instead of 41 as we might expect. That means that the string has only 14 characters even though the number has 41 digit. In order to see what happened to our string representation of the `number4` variable we can simply log that string representation and see what it looks like. In fact, let's log all the previous ones so that we can compare them.
+For some reason `.length` property of the `number4String` variable returns 14 instead of 41 as we might expect. That means that the string has only 14 characters even though the number has 41 digits. In order to see what happened to our string representation of the `number4` variable we can simply log that string representation and see what it looks like. In fact, let's log all the previous ones so that we can compare them.
 
 ```javascript
 const number1 = 1234567890;
@@ -90,7 +90,7 @@ Assuming our number is in the decade number system we can use a simple math oper
 
 For example, let's have a number 100. It is obvious that there are 3 digits in this number, but how can we actually get that information by performing some calculation?
 
-So, we need to get number 3 from number 100 by doing some math. We can try and divide it by 33.33 and round of the result and we'd get pretty close to 3. The only problem is that this approach won't work for, say 200 and we need it to work for every 3 digit number, from 100 to 999.
+So, we need to get number 3 from number 100 by doing some math. We can try and divide it by 33.33 and we'd get pretty close to 3. The only problem is that this approach won't work for, say number 200, and we need it to work for every 3 digit number, from 100 to 999.
 
 Obviously, addition, subtraction and multiplication won't work here for all of those numbers, so we can conclude that the division is still a way to go. We just need to find the best number to divide with.
 
@@ -124,7 +124,7 @@ Second division:
 | :-------------: | :-----------: | :---------------------: |
 | 99.9            | 9.99          | 3                       |
 
-Hmmm, so no luck!? No, not really. Total number of digits is not decreasing in the second example, but the number of digits in front of the decimal poit actually does, and it decreases the same way as the number of digits in the first example. Let's track the digits in front of the decimal point now:
+Hmmm, so... no luck!? No, not really. Total number of digits is not decreasing in the second example, but the number of digits in front of the decimal point actually does, and it decreases the same way as the number of digits in the first example. Let's track the digits in front of the decimal point now:
 
 First division:
 
@@ -144,12 +144,12 @@ By now it might be obvious what is our final goal... to get the value to be less
 
 In this examples, we did 3 divisions which matches with the number of digits in both numbers. If we try this with 384698, for example, you get this:
 
-* division 1: 38469.8  > 1 => one digit
-* division 2: 3846.98  > 1 => two digits
-* division 3: 384.698  > 1 => three digits
-* division 4: 38.4698  > 1 => four digits
-* division 5: 3.84698  > 1 => five digits
-* division 6: 0.384698 < 1 => six digits
+* division 1 => 38469.8  > 1 => one digit
+* division 2 => 3846.98  > 1 => two digits
+* division 3 => 384.698  > 1 => three digits
+* division 4 => 38.4698  > 1 => four digits
+* division 5 => 3.84698  > 1 => five digits
+* division 6 => 0.384698 < 1 => six digits
 
 We get that this number has 6 digits, which is correct.
 
@@ -157,7 +157,7 @@ All this was just some simple math, now we need to translate that into a program
 
 **While the number is greater or equal than 1, divide it by 10 and increment number of digits by one on each division.** 
 
-This statement literally tells us how we should program it, using the `while` loop:
+This statement literally tells us how we should program it. By using the `while` loop:
 
 ```javascript
 let number = 468168;
@@ -169,11 +169,11 @@ while (number >= 1) {
 console.log(length); // 6
 ```
 
-This will always work in math, though not always in JavaScript because its floating point weirdness, but it will work in most of the cases and it's best we can do with calculation.
+This will always work in math, though not always in JavaScript because its floating point weirdness, but it will work in most of the cases and it's best that we can do with calculation.
 
 ### Using the exponent
 
-There's another way to get the number of digits that does not require us to calculate anything and we can use JavaScript's built in methods to get what we want. Let's see how can we do that.
+There's another way to get the number of digits that does not require us to calculate anything and we can use JavaScript's built-in methods to get what we want. Let's see how can we do that.
 
 Ok, so the problem is that the number is written in the [scientific notation](https://en.wikipedia.org/wiki/Scientific_notation) which limits the number of characters in its string representation and we can't use `.length` string method to get the number of digits. But we can use the information from that scientific notation to actually get the number of digits. In order to do so, let's write a number in scientific notation:
 
@@ -246,4 +246,6 @@ I made a simple application where you can enter a number in the input field and 
 
 ## Conclusion
 
-The issue described in this article is something that we rarely encounter but in my opinion it is worth having this in mind. The solution is not that hard, especially for the experienced developers, but for inexperienced developers this might be a problem and they might straight up not even realize there is a problem since `number.toString().length` works well for up to about 22 digit long numbers, after that things start to me more "scientific". :D
+The issue described in this article is something that we rarely encounter in practice but in my opinion it is worth having this in mind. The solution is not that hard, especially for the experienced developers, but for inexperienced developers this might be a problem and they might straight up not even realize there is a problem since `number.toString().length` works well for up to about 22 digit long numbers, after that things start to me more "scientific". :D
+
+I hope you learned something new or at least had some fun reading this. Thank you for reading!
